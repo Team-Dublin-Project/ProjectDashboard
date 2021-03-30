@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/6ee1ecfcc2.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+        <title>Loop</title>
+    </head>
+    <body>
+        <div class="container-fluid" id="container">
+            <div id="left"></div>
+            <div id="right"></div>
+            <div class="row">
+                <div class="col-3 col-sm-4 col-md-2 col-lg-3">
+                    <div class="my-3 mx-3">
+                        <a href="{% url 'home' %}">
+                            <img src="/media/Logo/Loop_Logo2.png" class="img-responsive img-fluid float-right ml-5" alt="logo" style="width: 180px; height: 90px;">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-7 col-lg-3">
+                    <div class="my-3">
+                        <div class="search-container input-group">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 col-sm-4 col-md-3 col-lg-5 my-3">
+                    <ul class="icon-bar float-left d-flex flex-row my-2">
+                        {% if user.is_authenticated %}
+                            <li>
+                                <a class="btn nav-button p-3" href="{% url 'home' %}"><i class="fa fa-home fa-lg"></i></a>
+                            </li>
+                        {% else %}
+                        <li>
+                            <a class="btn nav-button p-3" href="{% url 'home' %}"><i class="fa fa-home fa-lg"></i></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <div class="float-right mr-5">
+                        {% if user.is_authenticated %}
+                            {% if user_profile.profile_image == 'default.jpg' %}
+                            <a class="mr-3 profile-image" href="{% url 'home' %}"><img src="{% static 'img/default.jpg' %}" alt="no user" class="img-fluid" style="width: 70px; height: 70px; border-radius: 100px;"></a>
+                            {% elif user_profile.profile_image %}
+                            <a class="mr-3 profile-image" href="{% url 'profiles:profile_detail' user.username %}"><img src="{{user_profile.profile_image.url}}" alt="{{user.username}}" class="img-fluid" style="width: 70px; height: 70px; border-radius: 100px;"></a>
+                            {% else %}
+                            {% endif %}
+                        <div class="settings mr-4 my-2">
+                            <button onclick="OpenSettings()" class="btn settings-btn"><i class="fa fa-bars fa-lg"></i></button>
+                            <div id="mySettings" class="settings-options">
+                                <a href="{% url 'signout' %}">Logout</a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <a class="mr-3 profile-image" href="{% url 'home' %}"><img src="{% static 'img/default.jpg' %}" alt="no user" class="img-fluid" style="width: 70px; height: 70px; border-radius: 100px;"></a>
+                        <div class="settings">
+                            <button onclick="OpenSettings()" class="settings-btn"><i class="fa fa-bars fa-lg"></i></button>
+                            <div id="mySettings" class="settings-options">
+                                <a href="{% url 'signup' %}">Sign up</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>   
+        </div>
+        <hr class="w-75">            
+        {% block content %}
+        {% endblock content %}
+        <footer class="footer text-center font-weight-bold mx-auto w-75 mt-5">
+            ©IRISHSOFT LLC
+        </footer>
+        <script src="{% static 'js/menu.js' %}"></script>
+        <script src="{% static 'js/order.js' %}"></script>
+    </body>

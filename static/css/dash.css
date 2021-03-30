@@ -1,0 +1,323 @@
+/*                       BASE CSS                                */
+body {
+	background-color: white;
+}
+
+#left, #right {
+    position: fixed;
+    width: 10%;
+    height: 100%;
+    top: 0
+}
+#left {
+    background: #F2F3F5;
+    left: 0;
+}
+#right {
+    background: #F2F3F5;
+    right: 0
+}
+#container {
+    background: white;
+}
+
+
+/*                        USER OPTIONS CSS                              */
+.settings {
+    position: relative;
+    display: inline-block;
+}
+
+.settings-btn {
+    background-color: #c8bef2;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.settings a:hover {background-color: #c8bef2}
+
+
+.settings-btn:hover, .settings-btn:focus {
+    background-color: #c8bef2;
+}
+
+.settings-options {
+    display: none;
+    position: absolute;
+    background-color: #F2F3F5;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.settings-options a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.settings a:hover {background-color: #c8bef2}
+
+.show {display:block;}
+
+.show2 {display:block;}
+
+.post-opt-btn {
+    background-color: #c8bef2;
+    color: white;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.post-opt-btn:hover, .post-opt-btn:focus {
+    background-color: #c8bef2;
+}
+
+.comment-opt-btn {
+    background-color: #c8bef2;
+    color: white;
+    padding-right: 4px;
+    padding-left: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border: none;
+    cursor: pointer;
+}
+
+.comment-opt-btn:hover, .post-opt-btn:focus {
+    background-color: #c8bef2;
+}
+
+.settings-options.two {
+    display: none;
+    position: absolute;
+    background-color: #F2F3F5;
+    min-width: 50px !important;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/*                   SEARCH BAR CSS                             */
+
+
+.search-container{
+    margin: 30px auto;
+    width: 180%;
+}
+
+.searchbox{
+    position:relative;
+    min-width:50px;
+    height: 50px;
+    float: left;
+	overflow:hidden;
+	border-radius: 30px;
+	border: 1px solid black;
+}
+
+.searchbox-input{
+    top: 0;
+    right: 0;
+    border: 0;
+	border-radius: 30px;
+    background: #F2F3F5;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding:0px 10px 0px 60px;
+    font-size:20px;
+    color: black;
+}
+
+.searchbox-icon{
+    width:49px;
+    height:50px;
+    display:block;
+    position:absolute;
+    top:0;
+    font-family:verdana;
+    font-size:22px;
+	border-radius: 30px;
+    line-height:45px;
+    text-align:center;
+    cursor:pointer;
+    color:#FFFFFF;
+	background:#c8bef2;
+	border: 1px solid black;
+}
+
+.searchbox-submit{
+    width:49px;
+    height:50px;
+    display:block;
+    position:absolute;
+    top:0;
+    font-family:verdana;
+    font-size:22px;
+	border-radius: 30px;
+    line-height:45px;
+    text-align:center;
+    cursor:pointer;
+    color:#FFFFFF;
+	background:#c8bef2;
+	border: 1px solid black;
+}
+
+/*                               NAV CSS                                         */
+
+.nav-button {
+    border: 1px black solid;
+    border-radius: 30px;
+    background-color: #c8bef2;
+    color: white;
+    min-width: 60px;
+    font-size: 16px;
+    overflow: auto;
+    border: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.product-image img {
+    width: 80%;
+}
+
+.item {
+    border: none;
+    box-shadow: none;
+}
+
+
+/*                Other Buttons              */
+
+.post-button {
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: #F2F3F5;
+    cursor: pointer;
+    min-width: 60px;
+    overflow: auto;
+}
+
+.post-button:hover {
+    background-color: #c8bef2;
+}
+
+.msg-btn {
+    border: 1px black solid;
+    background-color: #c8bef2;
+    color: white;
+    min-width: 60px;
+    font-size: 16px;
+    overflow: auto;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px
+}
+
+.mg-btn {
+    margin: 0;
+    width: 100px;
+    min-width: 60px;
+    float: left;
+    outline: none;
+    cursor: pointer;
+    line-height: 35px;
+    background-color: #F2F3F5;
+    border: 1px black solid;
+    border-radius: 5px;
+}
+
+.mg-btn:hover {
+    background-color: #c8bef2;
+}
+
+.mg-btn:active:focus {
+    box-shadow: 0px 8px 16px 0px #c8bef2;
+}
+
+.add-btn {
+    border: 1px black solid;
+    background-color: #c8bef2;
+    color: white;
+    min-width: 60px;
+    overflow: auto;
+    border: none;
+    cursor: pointer;
+}
+
+.yes-btn {
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: #F2F3F5;
+    cursor: pointer;
+    min-width: 60px;
+    overflow: auto;
+}
+
+.yes-btn:hover {
+    background-color: #c8bef2;
+}
+
+.no-btn {
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: #F2F3F5;
+    cursor: pointer;
+    min-width: 60px;
+    overflow: auto;
+}
+
+.no-btn:hover {
+    background-color: #c8bef2;
+}
+
+.signup-button {
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: #F2F3F5;
+    cursor: pointer;
+    min-width: 60px;
+    overflow: auto;
+}
+
+.signup-button:hover {
+    background-color: #c8bef2;
+}
+
+
+.signin-button {
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: #F2F3F5;
+    cursor: pointer;
+    min-width: 60px;
+    overflow: auto;
+}
+
+.signin-button:hover {
+    background-color: #c8bef2;
+}
+
+.cart-btn {
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: #F2F3F5;
+    cursor: pointer;
+    min-width: 60px;
+    overflow: auto;
+}
+
+.cart-btn:hover {
+    background-color: #c8bef2;
+}
