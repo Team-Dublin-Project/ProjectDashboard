@@ -3,6 +3,38 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row">
+        <div class="col-2 col-sm-3 col-md-2 col-lg-1"></div>
+        <div class="col-6 col-sm-3 col-md-2 col-lg-6">
+            <form method="post" class="w-75 text" type="input" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ file_form.files }}
+                <button type="file" class="btn post-button float-right d-inline my-3">Upload Data</button>
+                <input name="submit-form" type="hidden">
+            </form>
+        </div>
+        <div>
+            {% for file in files %}
+                {% if file.content_type  == "image"  %}
+                    <img class="float-left" style="height: 600px; width: 1280px;"  id="{{file.id}}" src="{{ file.files.url }}" data-toggle="modal" data-target="#userImg{{forloop.counter}}" data-id="{{ file.id }}">
+                    <!-- The Modal -->
+                    <div class="modal fade" id="userImg{{forloop.counter}}">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <img src="{{ file.files.url }}" class="w-100">
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                            <button type="button" class="close font-weight-bold" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                {% elif file.content_type  == "video" %}
+                    <video class="w-100 card-img-bottom" controls> <source src="{{file.files.url}}"> </video>
+                {% else %}
+                    <div> Unsupported Media Format </div>
+                {% endif %}
+            {% endfor %}
+        </div>
         <div class="col-2 col-sm-3 col-md-2 col-lg-2"></div>
     </div>
 </div>

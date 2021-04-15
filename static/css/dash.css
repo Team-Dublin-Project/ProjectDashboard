@@ -1,24 +1,66 @@
 /*                       BASE CSS                                */
 body {
-	background-color: white;
+	background-color: rgb(237, 240, 245);
 }
 
-#left, #right {
-    position: fixed;
-    width: 10%;
+/*                               NAV CSS                                         */
+
+.navbar{
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(left,  rgb(27, 95, 204) 0%, rgb(27, 95, 204) 20%, rgb(33, 119, 254) 20%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgb(27, 95, 204) 0%,rgb(27, 95, 204) 20%,rgb(33, 119, 254) 20%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  rgb(4, 67, 167, 1) 0%,rgb(4, 67, 167, 1) 15%,rgb(33, 119, 254) 10%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 */
+    height: 100px;
+}
+
+.nav-button {
+    border: 1px black solid;
+    border-radius: 30px;
+    background-color: #c8bef2;
+    color: white;
+    min-width: 60px;
+    font-size: 16px;
+    overflow: auto;
+    border: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+/*                        SIDE NAV CSS                                  */
+.sidenav {
+    margin-top: 150px;
     height: 100%;
-    top: 0
-}
-#left {
-    background: #F2F3F5;
+    width: 280px;
+    max-width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
     left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top:20px;
 }
-#right {
-    background: #F2F3F5;
-    right: 0
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    color: #818181;
+    font-size: 25px;
+    display: block;
 }
-#container {
-    background: white;
+
+.sidenav a:hover {
+    color: #f1f1f1
+}
+
+.main {
+    margin-left:160px;
+    padding: 0px 10px;
 }
 
 
@@ -67,135 +109,6 @@ body {
 
 .show2 {display:block;}
 
-.post-opt-btn {
-    background-color: #c8bef2;
-    color: white;
-    padding: 8px;
-    border: none;
-    cursor: pointer;
-}
-
-.post-opt-btn:hover, .post-opt-btn:focus {
-    background-color: #c8bef2;
-}
-
-.comment-opt-btn {
-    background-color: #c8bef2;
-    color: white;
-    padding-right: 4px;
-    padding-left: 4px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    border: none;
-    cursor: pointer;
-}
-
-.comment-opt-btn:hover, .post-opt-btn:focus {
-    background-color: #c8bef2;
-}
-
-.settings-options.two {
-    display: none;
-    position: absolute;
-    background-color: #F2F3F5;
-    min-width: 50px !important;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-/*                   SEARCH BAR CSS                             */
-
-
-.search-container{
-    margin: 30px auto;
-    width: 180%;
-}
-
-.searchbox{
-    position:relative;
-    min-width:50px;
-    height: 50px;
-    float: left;
-	overflow:hidden;
-	border-radius: 30px;
-	border: 1px solid black;
-}
-
-.searchbox-input{
-    top: 0;
-    right: 0;
-    border: 0;
-	border-radius: 30px;
-    background: #F2F3F5;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding:0px 10px 0px 60px;
-    font-size:20px;
-    color: black;
-}
-
-.searchbox-icon{
-    width:49px;
-    height:50px;
-    display:block;
-    position:absolute;
-    top:0;
-    font-family:verdana;
-    font-size:22px;
-	border-radius: 30px;
-    line-height:45px;
-    text-align:center;
-    cursor:pointer;
-    color:#FFFFFF;
-	background:#c8bef2;
-	border: 1px solid black;
-}
-
-.searchbox-submit{
-    width:49px;
-    height:50px;
-    display:block;
-    position:absolute;
-    top:0;
-    font-family:verdana;
-    font-size:22px;
-	border-radius: 30px;
-    line-height:45px;
-    text-align:center;
-    cursor:pointer;
-    color:#FFFFFF;
-	background:#c8bef2;
-	border: 1px solid black;
-}
-
-/*                               NAV CSS                                         */
-
-.nav-button {
-    border: 1px black solid;
-    border-radius: 30px;
-    background-color: #c8bef2;
-    color: white;
-    min-width: 60px;
-    font-size: 16px;
-    overflow: auto;
-    border: none;
-    cursor: pointer;
-}
-
-ul {
-    list-style-type: none;
-}
-
-.product-image img {
-    width: 80%;
-}
-
-.item {
-    border: none;
-    box-shadow: none;
-}
 
 
 /*                Other Buttons              */
@@ -205,7 +118,7 @@ ul {
     border-radius: 5px;
     background-color: #F2F3F5;
     cursor: pointer;
-    min-width: 60px;
+    min-width: 200px;
     overflow: auto;
 }
 
@@ -295,7 +208,6 @@ ul {
     background-color: #c8bef2;
 }
 
-
 .signin-button {
     border: 1px black solid;
     border-radius: 5px;
@@ -306,18 +218,5 @@ ul {
 }
 
 .signin-button:hover {
-    background-color: #c8bef2;
-}
-
-.cart-btn {
-    border: 1px black solid;
-    border-radius: 5px;
-    background-color: #F2F3F5;
-    cursor: pointer;
-    min-width: 60px;
-    overflow: auto;
-}
-
-.cart-btn:hover {
     background-color: #c8bef2;
 }
