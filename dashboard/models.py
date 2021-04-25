@@ -10,5 +10,5 @@ class UserFile(models.Model):
     
     #data = models.ForeignKey(Post, on_delete=models.CASCADE, default=None, related_name='file_posted')
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    files = models.FileField(upload_to=upload_path, blank=True, null=True)
+    file_name = models.FileField(upload_to=upload_path, blank=True, null=True)
     content_type = models.CharField(max_length=10, null=True)
