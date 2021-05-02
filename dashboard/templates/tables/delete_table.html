@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mt-4">
+  <div class="col-2 col-sm-3 col-md-2 col-lg-3"></div>
+  <div class="col-9 col-sm-6 col-md-8 col-lg-6">
+    <!-- header -->
+      <h3>Delete File</h3>
+      <div class="card">
+        <div class="card-header">
+          <h5>Are you sure you want to delete this file?</h5>
+        </div>
+        <div class="card-body">
+          <!-- the file thats being deleted -->
+          <h2>{{userfile.name}}</h2>
+          <form action="" method="POST"> 
+            {% csrf_token %}
+            <!-- delete file -->
+            <button type="submit" class="btn yes-btn font-weight-bold">Yes</button>
+            <!-- redirect to home page and no post delete -->
+            <a href="{% url 'home' %}" type="button" class="btn no-btn font-weight-bold">No</a>
+          </form>
+        </div>
+          <div class="card-footer text-muted">
+            This action is irreversible
+          </div>
+      </div>
+    <div class="col-2 col-sm-3 col-md-2 col-lg-3"></div>
+  </div>
+</div>
+{% endblock content %}

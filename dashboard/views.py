@@ -1,10 +1,12 @@
-import csv, io
+import csv, io, json
 import pandas as pd
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import View
+from django.views.generic import View, DeleteView
 from django.http import HttpResponseRedirect, StreamingHttpResponse
 from django.urls import reverse
 from django.urls import reverse_lazy
+from django.contrib import messages
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .forms import FileForm
 from .models import UserFile
@@ -18,24 +20,8 @@ class HomeView(LoginRequiredMixin, View):
     redirect_field_name = 'next'
 
     def get(self, request, *args, **kwargs):
-        files = None
-        out = None
-        headers = None
-        csv_f = None
-        df_list = []
-        username = request.user
         file_form = FileForm()
-        if UserFile.objects.filter(user=username).exists():
-            files = UserFile.objects.filter(user=username)
-            for f in files:
-                temp_df = pd.read_csv(f'media/{f.file_name}')
-                df_list.append(temp_df)
-                #reader = csv.DictReader(csv_fp)
-                #headers = [col for col in reader.fieldnames]
-                #out = [row for row in reader]
-            for dataset in df_list:
-                display(dataset)
-        context = {'file_form': file_form, 'files': files, 'df_list': df_list, 'csv_f': csv_f}
+        context = {'file_form': file_form}
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
@@ -46,33 +32,63 @@ class HomeView(LoginRequiredMixin, View):
                 messages.error(request, 'THIS IS NOT A CSV FILE')
                 return redirect('home')
             else:
-                '''
-                data_set = ufile.read().decode('utf-8-sig')
-                io_string = io.StringIO(data_set)
-                spamreader = csv.reader(io_string, delimiter=',')
-                for row in spamreader:
-                   print(row)
-                '''
                 isheader = csv.Sniffer().has_header(ufile.read().decode('utf-8-sig'))
                 if isheader and file_form.is_valid():
                     file = file_form.save(commit=False)
-                    file_instance = UserFile.objects.create(user=request.user, file_name=ufile)
+                    file_instance = UserFile.objects.create(user=request.user, file_loc=ufile, name=ufile.name)
                     file_instance.save()
-        return redirect('home')
-        args = {'file_form':file_form, 'messages': messages}
-        return render(request, self.template_name, args)
+        return redirect('display_tables', username=request.user.username)
+        context = {'file_form':file_form, 'messages': messages}
+        return render(request, self.template_name, context)
 
-    '''
-    def get_object(self, *args, **kwargs):
-        return get_object_or_404(
-        Post,
-        pk=self.kwargs.get('id')
-    )
+def display_tables(request, username):
+    files = None
+    context = {}
+    df_list = []
+    if UserFile.objects.filter(user=request.user).exists():
+        print(UserFile.objects.filter(id=45))
+        files = UserFile.objects.filter(user=request.user)
+        for f in files:
+            temp_df = pd.read_csv(f'media/{f.file_loc}')
+            df_list.append(temp_df)
+        csv_list = zip(files, df_list)
+        context = {'files': files, 'df_list': df_list, 
+                    'csv_list': csv_list, 'columns': temp_df.columns
+                }
+    return render(request, 'tables/tables.html', context)
+
+def has_permission(request):
+    user = request.user
+    return user.has_perm('dashboard.delete_userfile')
+
+class OwnerMixin(object):
+    print("hello1")
 
     def get_queryset(self):
-        qs = super(HomeView, self).get_queryset()
-        return qs.filter(owner=self.request.user)
+        qs = super(OwnerMixin, self).get_queryset()
+        print(qs)
+        return qs.filter(user_id=self.request.user)
 
-    if not ufile.name.endswith('.csv'):
-                messages.error(request, 'THIS IS NOT A CSV FILE')
-    '''
+class OwnerEditMixin(object):
+    def from_valid(self, form):
+        form.instance.user = (self.request.user) 
+        print(form.instance.user)
+        return super(OwnerEditMixin, self).form_valid(form)
+
+class OwnerTableMixin(OwnerMixin, LoginRequiredMixin):
+    model = UserFile
+    fields = ['file_loc']
+    success_url = reverse_lazy('home')
+
+class OwnerTableEditMixin(OwnerTableMixin, OwnerEditMixin):
+    model = UserFile
+    fields = ['file_loc']
+    success_url = reverse_lazy('home')
+
+class TableDeleteView(PermissionRequiredMixin, OwnerTableMixin, DeleteView):
+    template_name = 'tables/delete_table.html'
+    success_url = reverse_lazy('home')
+    permission_required = 'dashboard.delete_userfile'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

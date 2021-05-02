@@ -71,8 +71,9 @@ class SignUpForm(forms.ModelForm):
         user.set_password(self.cleaned_data['password1'])
         if commit:
             user.save()
-            group = Group.objects.get_or_create(name='User')
+            group, created = Group.objects.get_or_create(name='User')
             user.groups.add(Group.objects.get(name='User'))
+            group.permissions.add(27)
             user.save()
         return user
 

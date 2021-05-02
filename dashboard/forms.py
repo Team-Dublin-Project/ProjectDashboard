@@ -12,4 +12,4 @@ class FileForm(forms.ModelForm):
 
   class Meta:
     model = UserFile
-    fields = ['file_name']
+    fields = ['file_loc']

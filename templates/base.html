@@ -45,7 +45,7 @@
                 </div>
             </div>  
             <div class="row">
-                <div class="col-3 col-sm-4 col-md-2 col-lg-2">
+                <div class="col-3 col-sm-4 col-md-2 col-lg-1">
                     <div class="sidenav ml-3">
                         <div class="float-right mr-5">
                             {% if user.is_authenticated %}
@@ -59,17 +59,16 @@
                             {% endif %}
                         </div>
                         <a href="{% url 'home' %}">Home</a>
-                        <a href="{% url 'home' %}">Tables</a>
+                        <a href="{% url 'display_tables' user.username %}">Tables</a>
                         <a href="{% url 'home' %}">Community</a>
                     </div>
                 </div>
-                <div class="col-6 col-sm-4 col-md-7 col-lg-8">
+                <div class="col-6 col-sm-4 col-md-7 col-lg-10">
                     <div id="content", name="content", class="main">
                         {% block content %}
                         {% endblock content %}
                     </div>  
                 </div>
-                <div class="col-3 col-sm-4 col-md-3 col-lg-2"></div>
             </div>
         </div>          
         <footer class="footer fixed-bottom text-center font-weight-bold mx-auto w-75 mt-5">
