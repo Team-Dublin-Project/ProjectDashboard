@@ -46,8 +46,7 @@ def display_tables(request, username):
     context = {}
     df_list = []
     if UserFile.objects.filter(user=request.user).exists():
-        print(UserFile.objects.filter(id=45))
-        files = UserFile.objects.filter(user=request.user)
+        files = UserFile.objects.filter(user=request.user).order_by('-created')
         for f in files:
             temp_df = pd.read_csv(f'media/{f.file_loc}')
             df_list.append(temp_df)
@@ -57,19 +56,14 @@ def display_tables(request, username):
                 }
     return render(request, 'tables/tables.html', context)
 
-def has_permission(request):
-    user = request.user
-    return user.has_perm('dashboard.delete_userfile')
-
 class OwnerMixin(object):
-    print("hello1")
 
     def get_queryset(self):
         qs = super(OwnerMixin, self).get_queryset()
-        print(qs)
         return qs.filter(user_id=self.request.user)
 
 class OwnerEditMixin(object):
+
     def from_valid(self, form):
         form.instance.user = (self.request.user) 
         print(form.instance.user)
@@ -89,6 +83,7 @@ class TableDeleteView(PermissionRequiredMixin, OwnerTableMixin, DeleteView):
     template_name = 'tables/delete_table.html'
     success_url = reverse_lazy('home')
     permission_required = 'dashboard.delete_userfile'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context

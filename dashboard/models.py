@@ -13,6 +13,7 @@ class UserFile(models.Model):
     name = models.TextField(null=True)
     file_loc = models.FileField(upload_to=upload_path, blank=True, null=True)
     content_type = models.CharField(max_length=10, null=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self, *args, **kwargs):
 	    return self.name
