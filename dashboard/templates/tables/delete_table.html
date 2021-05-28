@@ -16,9 +16,9 @@
           <form action="" method="POST"> 
             {% csrf_token %}
             <!-- delete file -->
-            <button type="submit" class="btn yes-btn font-weight-bold">Yes</button>
+            <button type="submit" class="btn dash-btn font-weight-bold">Yes</button>
             <!-- redirect to home page and no post delete -->
-            <a href="{% url 'home' %}" type="button" class="btn no-btn font-weight-bold">No</a>
+            <a href="{% url 'home' %}" type="button" class="btn dash-btn font-weight-bold">No</a>
           </form>
         </div>
           <div class="card-footer text-muted">

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row mt-3">
+    <canvas id="chart" style="max-width: 600px; max-height: 600px;"></canvas>
+    <form method="post" class="w-50 float-right text" type="input" enctype="multipart/form-data" action="{% url 'graph:save_graph' %}">
+        {% csrf_token %}
+        {{form | crispy}}
+        <button type="submit" class="btn post-button float-right d-inline my-3">Save Graph</button>
+        <input name="image-url" id="url" value="" type="hidden">
+    </form>
+</div>
+<script>
+    try {
+        var data_set = [{% for item in values %}{{item}}, {% endfor %}]
+    } catch(err) {
+        var data_set = [{% for item in values %}"{{item}}", {% endfor %}];
+    }
+
+
+    let label = [{% for item in labels %}"{{ item }}",{% endfor %}]
+    let type = "{{type}}"
+
+    var colorArray = [
+        '#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600', '#ffe800'
+    ];
+
+    var myChart = new Chart(document.getElementById('chart').getContext('2d'), {
+        type: type,
+        data: {
+            labels: label,
+            datasets: [{
+                label: 'PAC',
+                data: data_set,
+                backgroundColor: colorArray,
+            }]
+        },
+        options: {
+            animation: {
+                onComplete: function() {
+                    var url=myChart.toBase64Image('image/png', 1);
+                    document.getElementById("url").value = url
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock content %}

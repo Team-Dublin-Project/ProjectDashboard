@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block metadiscription %}
-    Sign up to stay in the loop with your friends.
+    Sign up to stay in the Dash with your friends.
 {% endblock %}
 {% block title %}
     Create a New Account
@@ -16,6 +16,18 @@
                 <h2 class="text-justify text-left">
                     Register and join Dash
                 </h2>
+                <div class="my-5">
+                    <i class="fas fa-file-csv fa-3x"></i>
+                    <h6 class="ml-5 d-inline">Upload CSV Files</h6>
+                </div>
+                <div class="my-5">
+                    <i class="fas fa-chart-bar fa-3x"></i>
+                    <h6 class="ml-5 d-inline">Create Graphs</h6>
+                </div>
+                <div class="">
+                    <p>Already Registed?</p>
+                    <a class="text-dark" href="{% url 'signin' %}"><h4>Sign In</h4></a>
+                </div>
             </div>
             <div class="col-6 col-sm-4 col-md-7 col-lg-3 mt-2">
                 <form method="post" class="font-weight-bold">
@@ -30,21 +42,21 @@
                       <div class="modal-content">
                         <div class="ml-4 mt-2 mr-2">
                         <h2><strong>Terms and Conditions</strong></h2>
-                            <p>Welcome to Loop!</p>
+                            <p>Welcome to Dash!</p>
                             <p>These terms and conditions outline the rules and regulations for the use of Irishsoft's Website, located at http://127.0.0.1:8000/.</p>
-                            <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Loop if you do not agree to take all of the terms and conditions stated on this page.</p>
+                            <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Dash if you do not agree to take all of the terms and conditions stated on this page.</p>
                             <p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company’s terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
                             <h3><strong>Cookies</strong></h3>
-                            <p>We employ the use of cookies. By accessing Loop, you agreed to use cookies in agreement with the Irishsoft's Privacy Policy.</p>
+                            <p>We employ the use of cookies. By accessing Dash, you agreed to use cookies in agreement with the Irishsoft's Privacy Policy.</p>
                             <p>Most interactive websites use cookies to let us retrieve the user’s details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.</p>
                             <h3><strong>License</strong></h3>
-                            <p>Unless otherwise stated, Irishsoft and/or its licensors own the intellectual property rights for all material on Loop. All intellectual property rights are reserved. You may access this from Loop for your own personal use subjected to restrictions set in these terms and conditions.</p>
+                            <p>Unless otherwise stated, Irishsoft and/or its licensors own the intellectual property rights for all material on Dash. All intellectual property rights are reserved. You may access this from Dash for your own personal use subjected to restrictions set in these terms and conditions.</p>
                             <p>You must not:</p>
                             <ul>
-                                <li>-Republish material from Loop</li>
-                                <li>-Sell, rent or sub-license material from Loop</li>
-                                <li>-Reproduce, duplicate or copy material from Loop</li>
-                                <li>-Redistribute content from Loop</li>
+                                <li>-Republish material from Dash</li>
+                                <li>-Sell, rent or sub-license material from Dash</li>
+                                <li>-Reproduce, duplicate or copy material from Dash</li>
+                                <li>-Redistribute content from Dash</li>
                             </ul>
                             <p>This Agreement shall begin on the date hereof.</p>
                             <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. Irishsoft does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of Irishsoft,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, Irishsoft shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>

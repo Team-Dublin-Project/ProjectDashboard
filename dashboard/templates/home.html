@@ -4,20 +4,36 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-2 col-sm-3 col-md-2 col-lg-1"></div>
-        <div class="col-6 col-sm-3 col-md-2 col-lg-6">
+        <div class="col-6 col-sm-3 col-md-2 col-lg-8">
             {% for message in messages %}
             <div>
                 <!--| means OR operator-->
                 <strong>{{message|safe}}</strong>
             </div>
             {% endfor %}
-            <form method="post" class="w-75 text" type="input" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ file_form.file }}
-                <button type="submit" class="btn post-button float-right d-inline my-3">Upload File</button>
-            </form>
+            <div class="">
+                <form method="post" class="text" type="input" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ file_form.file }}
+                    <button type="submit" class="btn post-button d-inline my-3">Upload File</button>
+                </form>
+            </div>
         </div>
         <div class="col-2 col-sm-3 col-md-2 col-lg-2"></div>
     </div>
+    <hr>
+        <div class="row">
+            {% for file in files %}
+                <div id="items" class="col-6">
+                    <h3 class="text-center">{{file.title}}</h3>
+                    <img class="ml-5" style="width: 100%" src="{{file.image.url}}">
+                    <p class="ml-5 mt-3">Description: {{file.description}}</p>
+                </div>
+            {% empty %}
+                <h3>No Graphs to display</h3>
+            {% endfor %}
+        </div>
+    </div>
+
 </div>
 {% endblock content %}

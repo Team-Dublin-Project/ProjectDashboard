@@ -25,6 +25,7 @@ urlpatterns = [
     path('signin/', SignInView.as_view(), name='signin'),
     path('logout/', SignOutView.as_view(), name='signout'),
     path('', include('dashboard.urls')),
+    path('graph/', include('graph.urls')),
 ]
 
 if settings.DEBUG:

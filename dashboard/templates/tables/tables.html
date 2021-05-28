@@ -26,7 +26,14 @@
                 {% endfor %}
             </tbody>
         </table>
-        <a class="float-right" href="{% url 'delete_table' file.id %}">Delete File</a>
+        <ul class="float-right">
+            <li class="d-inline">
+                <a class="btn dash-btn" href="{% url 'graph:create_graph' file.name %}">Create Graph</a>
+            </li>
+            <li class="d-inline ml-3">
+                <a class="btn dash-btn" href="{% url 'delete_table' file.id %}">Delete File</a>
+            </li>
+        </ul>
     {% empty %}
     <h4>Sorry, no files available.</h4>
     {% endfor %}

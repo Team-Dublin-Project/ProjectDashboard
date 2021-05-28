@@ -1,4 +1,5 @@
 import csv, io, json
+from graph.models import Graph
 import pandas as pd
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, DeleteView
@@ -6,12 +7,10 @@ from django.http import HttpResponseRedirect, StreamingHttpResponse
 from django.urls import reverse
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .forms import FileForm
 from .models import UserFile
 from django.contrib import messages
-from IPython.display import display
 
 # Create your views here.
 
@@ -20,8 +19,9 @@ class HomeView(LoginRequiredMixin, View):
     redirect_field_name = 'next'
 
     def get(self, request, *args, **kwargs):
+        files = Graph.objects.filter(image__endswith='.png')
         file_form = FileForm()
-        context = {'file_form': file_form}
+        context = {'file_form': file_form, 'files': files}
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
@@ -37,7 +37,7 @@ class HomeView(LoginRequiredMixin, View):
                     file = file_form.save(commit=False)
                     file_instance = UserFile.objects.create(user=request.user, file_loc=ufile, name=ufile.name)
                     file_instance.save()
-        return redirect('display_tables', username=request.user.username)
+                    return redirect('display_tables', username=request.user.username)
         context = {'file_form':file_form, 'messages': messages}
         return render(request, self.template_name, context)
 
@@ -49,7 +49,7 @@ def display_tables(request, username):
         files = UserFile.objects.filter(user=request.user).order_by('-created')
         for f in files:
             temp_df = pd.read_csv(f'media/{f.file_loc}')
-            df_list.append(temp_df)
+            df_list.append(temp_df.head(10))
         csv_list = zip(files, df_list)
         context = {'files': files, 'df_list': df_list, 
                     'csv_list': csv_list, 'columns': temp_df.columns

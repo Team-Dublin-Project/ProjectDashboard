@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user.apps.UserConfig',
     'dashboard.apps.DashboardConfig',
+    'graph.apps.GraphConfig',
     'crispy_forms',
 ]
 
@@ -60,6 +61,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'dashboard', 'templates/'),
                                                         os.path.join(BASE_DIR, 'user', 'templates/'),
+                                                        os.path.join(BASE_DIR, 'graph', 'templates/'),
                                                         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -137,3 +139,5 @@ LOGIN_REDIRECT_URL = 'home'
 
 # Other Files Configuration
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+GRAPH_SESSION_ID = 'graph'

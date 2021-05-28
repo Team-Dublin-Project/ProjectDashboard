@@ -22,12 +22,6 @@
                 <div class="col-2 col-sm-4 col-md-3 col-lg-5 my-3">
                     <div class="float-right mr-5">
                         {% if user.is_authenticated %}
-                            {% if user_profile.profile_image == 'default.jpg' %}
-                            <a class="mr-3 profile-image" href="{% url 'home' %}"><img src="{% static 'img/default.jpg' %}" alt="no user" class="img-fluid" style="width: 70px; height: 70px; border-radius: 100px;"></a>
-                            {% elif user_profile.profile_image %}
-                            <a class="mr-3 profile-image" href="{% url 'profiles:profile_detail' user.username %}"><img src="{{user_profile.profile_image.url}}" alt="{{user.username}}" class="img-fluid" style="width: 70px; height: 70px; border-radius: 100px;"></a>
-                            {% else %}
-                            {% endif %}
                         <div class="settings mr-4 my-2">
                             <button onclick="OpenSettings()" class="btn settings-btn"><i class="fa fa-bars fa-lg"></i></button>
                             <div id="mySettings" class="settings-options">
@@ -35,7 +29,6 @@
                             </div>
                         </div>
                         {% else %}
-                        <a class="mr-3 profile-image" href="{% url 'home' %}"><img src="{% static 'img/default.jpg' %}" alt="no user" class="img-fluid" style="width: 70px; height: 70px; border-radius: 100px;"></a>
                         <div class="settings">
                             <button onclick="OpenSettings()" class="settings-btn"><i class="fa fa-bars fa-lg"></i></button>
                             <div id="mySettings" class="settings-options">
@@ -55,5 +48,4 @@
             ©IRISHSOFT LLC
         </footer>
         <script src="{% static 'js/menu.js' %}"></script>
-        <script src="{% static 'js/order.js' %}"></script>
     </body>
