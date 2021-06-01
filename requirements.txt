@@ -1,5 +1,5 @@
 asgiref==3.3.4
-Django==3.2.3
+django==3.2.3
 django-appconf==1.0.4
 django-crispy-forms==1.11.2
 django-imagekit==4.0.2
