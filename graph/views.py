@@ -53,8 +53,8 @@ def display_graph(request, name):
         'column_names' : df.columns.values,
         'row_data' : list(df.values.tolist()),
         'type': graph['type'],
-        'values' : df[graph['x_values']],
-        'labels' : df[graph['y_values']], 
+        'values' : df[graph['x_values']].to_json(),
+        'labels' : df[graph['y_values']].to_json(), 
     }
     return render(request, 'graph.html', context)
 

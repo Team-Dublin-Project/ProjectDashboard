@@ -26,7 +26,7 @@ SECRET_KEY = '^2y5(xzsy(#8af67-ef-or19ewz6=8o+k6#admr^fzug2%ojh7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dash-env.eba-tj5mx5hf.eu-west-1.elasticbeanstalk.com']
 
 
 # Application definition

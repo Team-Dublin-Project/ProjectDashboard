@@ -13,14 +13,14 @@
     </form>
 </div>
 <script>
-    try {
-        var data_set = [{% for item in values %}{{item}}, {% endfor %}]
-    } catch(err) {
-        var data_set = [{% for item in values %}"{{item}}", {% endfor %}];
-    }
+    let json_xvalues = {{ values | safe }};
+    data_set = Object.values(json_xvalues);
+    console.log(data_set);
 
 
-    let label = [{% for item in labels %}"{{ item }}",{% endfor %}]
+    let json_yvalues = {{ labels | safe }};
+    labels = Object.values(json_yvalues);
+    console.log(labels);
     let type = "{{type}}"
 
     var colorArray = [
@@ -30,9 +30,9 @@
     var myChart = new Chart(document.getElementById('chart').getContext('2d'), {
         type: type,
         data: {
-            labels: label,
+            labels: labels,
             datasets: [{
-                label: 'PAC',
+                label: "Data",
                 data: data_set,
                 backgroundColor: colorArray,
             }]
