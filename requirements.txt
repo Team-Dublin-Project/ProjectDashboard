@@ -1,6 +1,6 @@
 asgiref==3.3.4
 django==3.2.3
-psycopg2==2.5.4
+psycopg2-binary==2.8.5
 django-appconf==1.0.4
 django-crispy-forms==1.11.2
 django-imagekit==4.0.2
