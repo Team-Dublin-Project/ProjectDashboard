@@ -26,7 +26,7 @@ SECRET_KEY = '^2y5(xzsy(#8af67-ef-or19ewz6=8o+k6#admr^fzug2%ojh7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['dash-env.eba-tj5mx5hf.eu-west-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['dash2-env.eba-pvdwxqfa.eu-west-1.elasticbeanstalk.com']
 
 
 # Application definition
@@ -81,13 +81,28 @@ WSGI_APPLICATION = 'ProjectDashboard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if 'RDS_DB_NAME' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'db_dash',
+            'USER': 'postgres',
+            'PASSWORD': 'passsword',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
